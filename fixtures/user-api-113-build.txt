@@ -1,0 +1,62 @@
+---> Installing application source ...
+---> Upgrading pip to latest version ...
+Collecting pip
+Downloading pip-9.0.3-py2.py3-none-any.whl (1.4MB)
+Collecting setuptools
+Downloading setuptools-39.0.1-py2.py3-none-any.whl (569kB)
+Collecting wheel
+Downloading wheel-0.31.0-py2.py3-none-any.whl (41kB)
+Installing collected packages: pip, setuptools, wheel
+Found existing installation: pip 9.0.1
+Uninstalling pip-9.0.1:
+Successfully uninstalled pip-9.0.1
+Found existing installation: setuptools 28.8.0
+Uninstalling setuptools-28.8.0:
+Successfully uninstalled setuptools-28.8.0
+Found existing installation: wheel 0.29.0
+Uninstalling wheel-0.29.0:
+Successfully uninstalled wheel-0.29.0
+Successfully installed pip-9.0.3 setuptools-39.0.1 wheel-0.31.0
+---> Installing pipenv packaging tool ...
+Using base prefix '/opt/rh/rh-python36/root/usr'
+New python executable in /opt/app-root/src/.local/venvs/pipenv/bin/python3
+Also creating executable in /opt/app-root/src/.local/venvs/pipenv/bin/python
+Installing setuptools, pip, wheel...done.
+Collecting pipenv
+Downloading pipenv-11.10.0-py3-none-any.whl (5.6MB)
+Collecting virtualenv (from pipenv)
+Downloading virtualenv-15.2.0-py2.py3-none-any.whl (2.6MB)
+Collecting setuptools>=36.2.1 (from pipenv)
+Downloading setuptools-39.0.1-py2.py3-none-any.whl (569kB)
+Collecting certifi (from pipenv)
+Downloading certifi-2018.1.18-py2.py3-none-any.whl (151kB)
+Collecting pip>=9.0.1 (from pipenv)
+Downloading pip-9.0.3-py2.py3-none-any.whl (1.4MB)
+Collecting virtualenv-clone>=0.2.5 (from pipenv)
+Downloading virtualenv_clone-0.3.0-py2.py3-none-any.whl
+Installing collected packages: virtualenv, setuptools, certifi, pip, virtualenv-clone, pipenv
+Found existing installation: setuptools 28.8.0
+Uninstalling setuptools-28.8.0:
+Successfully uninstalled setuptools-28.8.0
+Found existing installation: pip 9.0.1
+Uninstalling pip-9.0.1:
+Successfully uninstalled pip-9.0.1
+Successfully installed certifi-2018.1.18 pip-9.0.3 pipenv-11.10.0 setuptools-39.0.1 virtualenv-15.2.0 virtualenv-clone-0.3.0
+---> Installing dependencies via pipenv ...
+Courtesy Notice: Pipenv found itself running within a virtual environment, so it will automatically use that environment, instead of creating its own for any project. You can set PIPENV_IGNORE_VIRTUALENVS=1 to force pipenv to ignore that environment and create its own instead.
+Installing dependencies from Pipfile.lock (6f696b)…
+Ignoring pathlib: markers 'python_version < "3.4"' don't match your environment
+Ignoring typing: markers 'python_version < "3.6"' don't match your environment
+Courtesy Notice: Pipenv found itself running within a virtual environment, so it will automatically use that environment, instead of creating its own for any project. You can set PIPENV_IGNORE_VIRTUALENVS=1 to force pipenv to ignore that environment and create its own instead.
+Checking PEP 508 requirements…
+Passed!
+Checking installed package safety…
+All good!
+Pushing image docker-registry.default.svc:5000/thoth-test-core/user-api:test ...
+Pushed 5/10 layers, 50% complete
+Pushed 6/10 layers, 60% complete
+Pushed 7/10 layers, 70% complete
+Pushed 8/10 layers, 80% complete
+Pushed 9/10 layers, 90% complete
+Pushed 10/10 layers, 100% complete
+Push successful

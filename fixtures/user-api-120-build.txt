@@ -1,0 +1,68 @@
+---> Installing application source ...
+---> Upgrading pip to latest version ...
+Collecting pip
+Downloading pip-10.0.0-py2.py3-none-any.whl (1.3MB)
+Collecting setuptools
+Downloading setuptools-39.0.1-py2.py3-none-any.whl (569kB)
+Collecting wheel
+Downloading wheel-0.31.0-py2.py3-none-any.whl (41kB)
+Installing collected packages: pip, setuptools, wheel
+Found existing installation: pip 9.0.1
+Uninstalling pip-9.0.1:
+Successfully uninstalled pip-9.0.1
+Found existing installation: setuptools 28.8.0
+Uninstalling setuptools-28.8.0:
+Successfully uninstalled setuptools-28.8.0
+Found existing installation: wheel 0.29.0
+Uninstalling wheel-0.29.0:
+Successfully uninstalled wheel-0.29.0
+Successfully installed pip-10.0.0 setuptools-39.0.1 wheel-0.31.0
+---> Installing pipenv packaging tool ...
+Using base prefix '/opt/rh/rh-python36/root/usr'
+New python executable in /opt/app-root/src/.local/venvs/pipenv/bin/python3
+Also creating executable in /opt/app-root/src/.local/venvs/pipenv/bin/python
+Installing setuptools, pip, wheel...done.
+Collecting pipenv
+Downloading pipenv-11.10.0-py3-none-any.whl (5.6MB)
+Collecting setuptools>=36.2.1 (from pipenv)
+Downloading setuptools-39.0.1-py2.py3-none-any.whl (569kB)
+Collecting pip>=9.0.1 (from pipenv)
+Downloading pip-10.0.0-py2.py3-none-any.whl (1.3MB)
+Collecting certifi (from pipenv)
+Downloading certifi-2018.1.18-py2.py3-none-any.whl (151kB)
+Collecting virtualenv-clone>=0.2.5 (from pipenv)
+Downloading virtualenv_clone-0.3.0-py2.py3-none-any.whl
+Collecting virtualenv (from pipenv)
+Downloading virtualenv-15.2.0-py2.py3-none-any.whl (2.6MB)
+Installing collected packages: setuptools, pip, certifi, virtualenv-clone, virtualenv, pipenv
+Found existing installation: setuptools 28.8.0
+Uninstalling setuptools-28.8.0:
+Successfully uninstalled setuptools-28.8.0
+Found existing installation: pip 9.0.1
+Uninstalling pip-9.0.1:
+Successfully uninstalled pip-9.0.1
+Successfully installed certifi-2018.1.18 pip-10.0.0 pipenv-11.10.0 setuptools-39.0.1 virtualenv-15.2.0 virtualenv-clone-0.3.0
+---> Installing dependencies via pipenv ...
+Courtesy Notice: Pipenv found itself running within a virtual environment, so it will automatically use that environment, instead of creating its own for any project. You can set PIPENV_IGNORE_VIRTUALENVS=1 to force pipenv to ignore that environment and create its own instead.
+Installing dependencies from Pipfile.lock (6f696b)…
+Ignoring pathlib: markers 'python_version < "3.4"' don't match your environment
+Ignoring typing: markers 'python_version < "3.6"' don't match your environment
+Courtesy Notice: Pipenv found itself running within a virtual environment, so it will automatically use that environment, instead of creating its own for any project. You can set PIPENV_IGNORE_VIRTUALENVS=1 to force pipenv to ignore that environment and create its own instead.
+Checking PEP 508 requirements…
+Passed!
+Checking installed package safety…
+An error occurred:
+Traceback (most recent call last):
+  File "/opt/rh/rh-python36/root/usr/lib64/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/opt/rh/rh-python36/root/usr/lib64/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/__main__.py", line 8, in <module>
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/click/core.py", line 722, in __call__
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/click/core.py", line 697, in main
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/click/core.py", line 1066, in invoke
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/click/core.py", line 895, in invoke
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/click/core.py", line 535, in invoke
+  File "/opt/app-root/src/.local/venvs/pipenv/lib/python3.6/site-packages/pipenv/patched/safety.zip/safety/cli.py", line 52, in check
+AttributeError: module 'pip' has no attribute 'get_installed_distributions'
+error: build error: non-zero (13) exit code from registry.access.redhat.com/rhscl/python-36-rhel7@sha256:b0d4469cf1b371997feb928b86bfed0f30bb89007a747e247760cc4502c503be
