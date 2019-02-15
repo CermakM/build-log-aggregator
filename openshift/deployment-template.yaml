@@ -6,6 +6,7 @@ metadata:
     description: >
       This is Osiris API DeploymentConfig Template.
     openshift.io/display-name: 'Thoth: Osiris API'
+    version: 0.1.0
     tags: ai-stacks,aistacks,build,build-aggregator,build-analysis,thoth,osiris,osiris-api
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: >
@@ -17,122 +18,127 @@ metadata:
     component: osiris-api
 
 objects:
-
-- apiVersion: v1
-  kind: DeploymentConfig
-  metadata:
-    labels:
-      app: osiris
-      component: osiris-api
-    name: osiris-api
-  spec:
-    replicas: 1
-    selector:
-      app: osiris
-      component: osiris-api
-      deploymentconfig: osiris-api
-      service: osiris-api
-    strategy:
-      resources: {}
-    template:
-      metadata:
-        labels:
-          app: osiris
-          component: osiris-api
-          deploymentconfig: osiris-api
-          service: osiris-api
-      spec:
-        serviceAccountName: analyzer
-        containers:
-        - image: osiris-api:latest
-          name: osiris-api
-          ports:
-          - containerPort: 5000
-            protocol: TCP
-          resources: {}
-          env:
-          - name: FLASK_ENV
-            value: 'development'
-          - name: KUBERNETES_API_URL
-            value: 'https://kubernetes.default.svc.cluster.local'
-          - name: KUBERNETES_VERIFY_TLS
-            value: '0'
-          - name: MIDDLETIER_NAMESPACE
-            value: 'thoth-test-core'
-          - name: OSIRIS_HOST_NAME
-            valueFrom:
-              configMapKeyRef:
-                key: OSIRIS_HOST_NAME
-                name: osiris
-          - name: OSIRIS_HOST_PORT
-            valueFrom:
-              configMapKeyRef:
-                key: OSIRIS_HOST_PORT
-                name: osiris
-          - name: THOTH_S3_ENDPOINT_URL
-            valueFrom:
-              configMapKeyRef:
-                key: THOTH_S3_ENDPOINT_URL
-                name: osiris
-          - name: THOTH_CEPH_KEY_ID
-            valueFrom:
-              configMapKeyRef:
-                key: THOTH_CEPH_KEY_ID
-                name: osiris
-          - name: THOTH_CEPH_SECRET_KEY
-            valueFrom:
-              configMapKeyRef:
-                key: THOTH_CEPH_SECRET_KEY
-                name: osiris
-          - name: THOTH_CEPH_BUCKET
-            valueFrom:
-              configMapKeyRef:
-                key: THOTH_CEPH_BUCKET
-                name: osiris
-          - name: THOTH_DEPLOYMENT_NAME
-            valueFrom:
-              configMapKeyRef:
-                key: THOTH_DEPLOYMENT_NAME
-                name: osiris
-          - name: THOTH_CEPH_BUCKET_PREFIX
-            valueFrom:
-              configMapKeyRef:
-                key: THOTH_CEPH_BUCKET_PREFIX
-                name: osiris
-    triggers:
-    - type: ConfigChange
-    - type: ImageChange
-      imageChangeParams:
-        containerNames:
-          - osiris-api
-        automatic: true
-        from:
-          kind: ImageStreamTag
-          name: osiris-api:latest
-
-- apiVersion: v1
-  kind: Service
-  metadata:
-    name: osiris-api
-    labels:
-      app: osiris
-      component: osiris-api
-  spec:
-    ports:
-    - port: 5000
-      protocol: TCP
-      targetPort: 5000
-    selector:
-      service: osiris-api
-
-- apiVersion: v1
-  kind: Route
-  metadata:
-    name: osiris-api
-    labels:
-      app: osiris
-      component: osiris-api
-  spec:
-    to:
-      kind: Service
+  - apiVersion: v1
+    kind: DeploymentConfig
+    metadata:
+      labels:
+        app: osiris
+        component: osiris-api
       name: osiris-api
+    spec:
+      replicas: 1
+      selector:
+        app: osiris
+        component: osiris-api
+        deploymentconfig: osiris-api
+        service: osiris-api
+      strategy:
+        resources: {}
+      template:
+        metadata:
+          labels:
+            app: osiris
+            component: osiris-api
+            deploymentconfig: osiris-api
+            service: osiris-api
+        spec:
+          serviceAccountName: analyzer
+          containers:
+            - image: osiris-api:latest
+              name: osiris-api
+              ports:
+                - containerPort: 5000
+                  protocol: TCP
+              resources:
+                requests:
+                  memory: "384Mi"
+                  cpu: "125m"
+                limits:
+                  memory: "384Mi"
+                  cpu: "500m"
+              env:
+                - name: FLASK_ENV
+                  value: 'development'
+                - name: KUBERNETES_API_URL
+                  value: 'https://kubernetes.default.svc.cluster.local'
+                - name: KUBERNETES_VERIFY_TLS
+                  value: '0'
+                - name: MIDDLETIER_NAMESPACE
+                  value: 'thoth-test-core'
+                - name: OSIRIS_HOST_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      key: OSIRIS_HOST_NAME
+                      name: osiris
+                - name: OSIRIS_HOST_PORT
+                  valueFrom:
+                    configMapKeyRef:
+                      key: OSIRIS_HOST_PORT
+                      name: osiris
+                - name: THOTH_S3_ENDPOINT_URL
+                  valueFrom:
+                    configMapKeyRef:
+                      key: THOTH_S3_ENDPOINT_URL
+                      name: osiris
+                - name: THOTH_CEPH_KEY_ID
+                  valueFrom:
+                    configMapKeyRef:
+                      key: THOTH_CEPH_KEY_ID
+                      name: osiris
+                - name: THOTH_CEPH_SECRET_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      key: THOTH_CEPH_SECRET_KEY
+                      name: osiris
+                - name: THOTH_CEPH_BUCKET
+                  valueFrom:
+                    configMapKeyRef:
+                      key: THOTH_CEPH_BUCKET
+                      name: osiris
+                - name: THOTH_DEPLOYMENT_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      key: THOTH_DEPLOYMENT_NAME
+                      name: osiris
+                - name: THOTH_CEPH_BUCKET_PREFIX
+                  valueFrom:
+                    configMapKeyRef:
+                      key: THOTH_CEPH_BUCKET_PREFIX
+                      name: osiris
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChangeParams:
+            containerNames:
+              - osiris-api
+            automatic: true
+            from:
+              kind: ImageStreamTag
+              name: osiris-api:latest
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: osiris-api
+      labels:
+        app: osiris
+        component: osiris-api
+    spec:
+      ports:
+        - port: 5000
+          protocol: TCP
+          targetPort: 5000
+      selector:
+        service: osiris-api
+
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: osiris-api
+      labels:
+        app: osiris
+        component: osiris-api
+    spec:
+      to:
+        kind: Service
+        name: osiris-api
