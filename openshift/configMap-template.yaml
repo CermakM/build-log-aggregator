@@ -6,6 +6,7 @@ metadata:
     description: >
       This is Osiris API ConfigMap Template.
     openshift.io/display-name: 'Thoth: Osiris API - ConfigMap'
+    version: 0.1.0
     tags: ai-stacks,aistacks,build,build-aggregator,build-analysis,thoth,osiris,osiris-api
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: >
@@ -15,32 +16,32 @@ metadata:
     template: osiris-configmap
     app: osiris
 
-objects:
-- apiVersion: v1
-  kind: ConfigMap
-  metadata:
-    creationTimestamp: null
-    labels:
-      app: osiris
-      component: configmap
-    name: osiris
-  data:
-    OSIRIS_HOST_NAME: 'http://osiris-api-thoth-test-core.cloud.paas.upshift.redhat.com/'
-    OSIRIS_HOST_PORT: '5000'
-    THOTH_CEPH_BUCKET: DH-DEV-DATA
-    THOTH_CEPH_BUCKET_PREFIX: data/thoth
-    THOTH_CEPH_KEY_ID: ${CEPH_KEY_ID} 
-    THOTH_CEPH_SECRET_KEY: ${CEPH_SECRET_KEY}
-    THOTH_DEPLOYMENT_NAME: macermak
-    THOTH_S3_ENDPOINT_URL: https://s3.upshift.redhat.com
-
 parameters:
   - description: Ceph storage identification
     displayName: Ceph key
-    required: True
+    required: true
     name: CEPH_KEY_ID
 
   - description: Ceph storage secret key
     displayName: Ceph secret key
-    required: True
+    required: true
     name: CEPH_SECRET_KEY
+
+objects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: osiris
+        component: configmap
+      name: osiris
+    data:
+      OSIRIS_HOST_NAME: 'http://osiris-api-thoth-test-core.cloud.paas.upshift.redhat.com/'
+      OSIRIS_HOST_PORT: '5000'
+      THOTH_CEPH_BUCKET: DH-DEV-DATA
+      THOTH_CEPH_BUCKET_PREFIX: data/thoth
+      THOTH_CEPH_KEY_ID: ${CEPH_KEY_ID}
+      THOTH_CEPH_SECRET_KEY: ${CEPH_SECRET_KEY}
+      THOTH_DEPLOYMENT_NAME: macermak
+      THOTH_S3_ENDPOINT_URL: https://s3.upshift.redhat.com

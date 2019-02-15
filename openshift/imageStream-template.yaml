@@ -6,6 +6,7 @@ metadata:
     description: >
       This is Osiris API ImageStream Template.
     openshift.io/display-name: 'Thoth: Osiris API - ImageStream'
+    version: 0.1.0
     tags: ai-stacks,aistacks,build,build-aggregator,build-analysis,thoth,osiris,osiris-api
     template.openshift.io/documentation-url: https://github.com/Thoth-Station/
     template.openshift.io/long-description: >
@@ -15,6 +16,13 @@ metadata:
     template: osiris-api-imagestream
     app: osiris
     component: osiris-api
+
+parameters:
+  - description: Tag of the ImageStream to use
+    displayName: ImageStream Tag
+    required: true
+    name: IMAGE_STREAM_TAG
+    value: 'latest'
 
 objects:
   - kind: ImageStream
@@ -26,10 +34,3 @@ objects:
       name: osiris-api
     spec:
       name: ${IMAGE_STREAM_TAG}
-
-parameters:
-  - description: Tag of the ImageStream to use
-    displayName: ImageStream Tag
-    required: true
-    name: IMAGE_STREAM_TAG
-    value: 'latest'
