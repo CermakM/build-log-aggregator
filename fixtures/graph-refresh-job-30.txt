@@ -1,0 +1,6 @@
+﻿Cloning "https://github.com/thoth-station/graph-refresh-job " ...
+	Commit:	c12ac0ca15c646b0f565fd46602a39e163710550 (Increase duration of solver so it does not get killed too soon)
+	Author:	Fridolin Pokorny <fridolin@redhat.com>
+	Date:	Fri Apr 27 13:17:36 2018 +0200
+pulling image error : manifest unknown: manifest unknown
+error: build error: unable to get registry.centos.org/centos/python-36-centos7@sha256:d6f7654758b9b472648f97b332d2683cf00a9cec60c06a50645a23e0ed1ca981
