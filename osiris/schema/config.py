@@ -15,6 +15,7 @@ class Config(object):
     def __init__(self, api_key: str, token: str, context: str = None, cluster: str = None,
                  namespace: str = None, host: str = None, port: str = None, url: str = None,
                  username: str = None, password: str = None, verify_ssl: bool = None):
+        """Initialize Config model."""
         self.api_key: str = api_key
         self.token: str = token
 

@@ -67,7 +67,7 @@ class Base(object):
 
 class BaseSchema(Schema):
     """Base model schema.
-    
+
     This schema is inhereted and marshalled by all schemas
     and used for each API payload.
     """

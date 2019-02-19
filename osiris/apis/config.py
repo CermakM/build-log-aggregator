@@ -1,6 +1,6 @@
 # Osiris: Build log aggregator.
 
-"""Namespace: auth"""
+"""Namespace: auth."""
 
 from http import HTTPStatus
 from pathlib import Path

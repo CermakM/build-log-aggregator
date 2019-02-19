@@ -19,7 +19,6 @@ def status(http_status: HTTPStatus):
     This decorator can be used to assemble custom payloads
     with default keys common to all responses.
     """
-
     def wrapper(fun: typing.Callable[..., dict] = None):
 
         def inner(*args, **kwargs) -> typing.Tuple[dict, HTTPStatus]:

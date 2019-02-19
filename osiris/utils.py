@@ -67,20 +67,3 @@ def suppress_exception(exc_type=Exception):
         return _inner
 
     return _wrapper
-
-
-def noexcept(fun: typing.Callable):
-    """Decorate non-throwing function."""
-    def _inner(*args, **kwargs):
-
-        ret = None
-        # noinspection PyBroadException
-        try:
-            ret = fun(*args, **kwargs)
-        except Exception as exc:
-            # TODO: log caught exception warnging
-            print("[WARNING] Exception caught:", exc, file=sys.stderr)
-
-        return ret
-
-    return _inner

@@ -13,10 +13,6 @@ from thoth.storages.result_base import ResultStorageBase
 from osiris import DEFAULT_OC_LOG_LEVEL
 from osiris import get_oc_client
 
-from osiris.exceptions import OCError
-from osiris.exceptions import OCAuthenticationError
-from osiris.utils import execute_command
-
 from osiris.schema.build import BuildLog
 from osiris.schema.build import BuildInfo, BuildInfoSchema
 from osiris.schema.build import BuildInfoPagination
@@ -86,12 +82,18 @@ class _BuildLogsAggregator(ResultStorageBase):
         document_id: str = hashlib.sha256(build_id.encode('utf-8')).hexdigest()
 
         build_doc: dict = self.ceph.retrieve_document(document_id)
-        build_log = BuildLog(raw=build_doc.pop('build_log'))
+
+        build_log_data = build_doc.pop('build_log')
+
+        if isinstance(build_log_data, dict):
+            build_log = BuildLog(**build_log_data)
+        else:
+            build_log = BuildLog(data=build_log_data)
 
         ret: tuple = (build_log, )
 
         if not log_only:
-            build_info, _ = BuildInfoSchema().load(build_doc)
+            build_info = BuildInfo(**BuildInfoSchema().load(build_doc).data)
 
             ret = build_log, build_info
 

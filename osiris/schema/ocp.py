@@ -2,8 +2,6 @@
 
 """OCP API schema."""
 
-from kubernetes.client.models.v1_event import V1Event as Event
-
 from marshmallow import fields
 from marshmallow import post_load
 from marshmallow import Schema
@@ -17,7 +15,7 @@ class OCP(object):
                  name: str = None,
                  namespace: str = None,
                  self_link: str = None):
-
+        """Initialize OCP model."""
         self.kind = kind
 
         self.name = name
@@ -26,12 +24,31 @@ class OCP(object):
         self.self_link = self_link
 
     @classmethod
-    def from_event(cls, event: Event):
+    def from_event(cls, event: "V1Event"):
+        """Construct class from Kubernetes V1Event."""
         kind = event.involved_object.kind
         name = event.involved_object.name
         namespace = event.involved_object.namespace
 
         self_link = event.metadata.self_link
+
+        return cls(
+            kind=kind,
+            name=name,
+            namespace=namespace,
+            self_link=self_link
+        )
+
+    @classmethod
+    def from_resource(cls, resource: "ResourceInstance"):
+        """Construct class from OpenShift ResourceInstance."""
+        metadata = resource['metadata']
+
+        kind = resource['kind']
+        name = metadata['name']
+        namespace = metadata['namespace']
+
+        self_link = metadata['selfLink']
 
         return cls(
             kind=kind,
