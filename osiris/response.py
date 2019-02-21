@@ -14,11 +14,7 @@ __schema__ = BaseSchema()
 
 
 def status(http_status: HTTPStatus):
-    """API response wrapper.
-
-    This decorator can be used to assemble custom payloads
-    with default keys common to all responses.
-    """
+    """Use this decorator to assemble custom payloads with default keys common to all responses."""
     def wrapper(fun: typing.Callable[..., dict] = None):
 
         def inner(*args, **kwargs) -> typing.Tuple[dict, HTTPStatus]:
@@ -50,7 +46,7 @@ def status(http_status: HTTPStatus):
 
 @status(HTTPStatus.OK)
 def request_ok(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cover
-    """API response for status OK.
+    """Return API response for status OK.
 
     Request fulfilled, document follows.
     """
@@ -59,7 +55,7 @@ def request_ok(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cove
 
 @status(HTTPStatus.ACCEPTED)
 def request_accepted(payload=None, errors=None, **kwargs) -> tuple:
-    """API response for accepted put_request.
+    """Return API response for accepted put_request.
 
     Request accepted, processing continues off-line.
     """
@@ -68,7 +64,7 @@ def request_accepted(payload=None, errors=None, **kwargs) -> tuple:
 
 @status(HTTPStatus.CREATED)
 def request_created(payload=None, errors=None, **kwargs) -> tuple:
-    """API response for created put_request.
+    """Return API response for created put_request.
 
     Document created, URL follows.
     """
@@ -77,7 +73,7 @@ def request_created(payload=None, errors=None, **kwargs) -> tuple:
 
 @status(HTTPStatus.UNAUTHORIZED)
 def request_not_authorized(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cover
-    """API response for unauthorized put_request.
+    """Return API response for unauthorized put_request.
 
     No permission -- see authorization schemes.
     """
@@ -86,7 +82,7 @@ def request_not_authorized(payload=None, errors=None, **kwargs) -> tuple:  # pra
 
 @status(HTTPStatus.NETWORK_AUTHENTICATION_REQUIRED)
 def request_not_authenticated(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cover
-    """API response for unauthenticated put_request.
+    """Return API response for unauthenticated put_request.
 
     Network Authentication Required,
     The client needs to authenticate to gain network access
@@ -96,7 +92,7 @@ def request_not_authenticated(payload=None, errors=None, **kwargs) -> tuple:  # 
 
 @status(HTTPStatus.FORBIDDEN)
 def request_forbidden(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cover
-    """API response for forbidden put_request.
+    """Return API response for forbidden put_request.
 
     Request forbidden -- authorization will not help.
     """
@@ -105,7 +101,7 @@ def request_forbidden(payload=None, errors=None, **kwargs) -> tuple:  # pragma: 
 
 @status(HTTPStatus.BAD_REQUEST)
 def bad_request(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cover
-    """API response for bad put_request.
+    """Return API response for bad put_request.
 
     Bad put_request syntax or unsupported method.
     """
@@ -114,7 +110,7 @@ def bad_request(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cov
 
 @status(HTTPStatus.SERVICE_UNAVAILABLE)
 def request_unavailable(payload=None, errors=None, **kwargs) -> tuple:  # pragma: no cover
-    """API response for bad put_request.
+    """Return API response for bad put_request.
 
     The server cannot process the put_request at the moment.
     """
